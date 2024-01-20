@@ -1,26 +1,28 @@
 #include <iostream>
 #include <vector>
-#include <climits>
-#define MOD 1000000007
+#include <stack>
 using namespace std;
 
 class Solution {
     public:
         /*
-            Unoptimized Solution
-            Time Complexity = O(n^3)
-            Space Complexity = O(1)
+            Optimized Solution
+            Time Complexity = O(n)
+            Space Complexity = O(n)
         */
-        int subArrayMins(vector<int>& arr) {
-            int sum = 0, size = arr.size();
-            for(int start_Index = 0; start_Index < size; start_Index++) {
-                for(int end_Index = start_Index; end_Index < size; end_Index++) {
-                    int min_Value = INT_MAX;
-                    for(int current_Index = start_Index; current_Index <= end_Index; current_Index++)
-                        min_Value = min(min_Value, arr[current_Index]);
-                    sum = (sum + min_Value) % MOD;
+        int sumSubarrayMins(vector<int>& arr) {
+            const int MOD = 1000000007, size = arr.size();
+            long long int sum = 0; stack<int> st; vector<int> left(size), right(size,size);
+            for(int index = 0; index < size; ++index) {
+                while(!st.empty() && arr[index] < arr[st.top()]) {
+                    int popped_Index = st.top(); st.pop();
+                    right[popped_Index] = index;
                 }
+                left[index] = (st.empty()) ? -1:st.top();
+                st.push(index);
             }
+            for(int index = 0; index < size; ++index)
+                sum = (sum + (long long int)(index-left[index])*(right[index]-index)%MOD * arr[index] % MOD) % MOD;
             return sum % MOD;
         }
 };
@@ -29,6 +31,6 @@ int main() {
     int n; cin >> n;
     vector<int> arr(n,0);
     for(int index = 0; index < n; index++) cin >> arr[index];
-    Solution sol; int ans = sol.subArrayMins(arr);
+    Solution sol; int ans = sol.sumSubarrayMins(arr);
     cout << ans << endl;
 }
