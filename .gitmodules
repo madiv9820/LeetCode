@@ -1,3 +1,6 @@
 [submodule "884_Uncommon_Words_from_Two_Sentences"]
 	path = 884_Uncommon_Words_from_Two_Sentences
 	url = https://github.com/madiv9820/884_Uncommon_Words_from_Two_Sentences.git
+[submodule "Daily Challenge/179. Largest Number"]
+	path = Daily Challenge/179. Largest Number
+	url = https://github.com/madiv9820/179_Largest_Number.git
