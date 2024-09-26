@@ -7,3 +7,6 @@
 [submodule "Daily Challenge/241. Different Ways to Add Parentheses"]
 	path = Daily Challenge/241. Different Ways to Add Parentheses
 	url =  https://github.com/madiv9820/241_Different_Ways_to_Add_Parentheses.git
+[submodule "Daily Challenge Repo/729. My Calendar I"]
+	path = Daily Challenge Repo/729. My Calendar I
+	url = https://github.com/madiv9820/729_My_Calendar_I.git
